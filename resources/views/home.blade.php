@@ -9,4 +9,5 @@
     {{$posts->onEachSide(1)->links()}}        
     <!-- Pagination -->
     </section>
+    <x-sidebar/>
 </x-app-layout>

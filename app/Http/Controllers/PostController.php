@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
 {
@@ -42,7 +43,27 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        if(!$post->active || $post->published_at > Carbon::now()){
+            throw new NotFoundHttpException();
+        }
+
+        $next = Post::query()
+            ->where('active', true)
+            ->whereDate('published_at', '<=', Carbon::now())
+            ->whereDate('published_at', '<', $post->published_at)
+            ->orderBy('published_at', 'desc')
+            ->limit(1)
+            ->first();
+
+        $prev = Post::query()
+            ->where('active', true)
+            ->whereDate('published_at', '<=', Carbon::now())
+            ->whereDate('published_at', '>', $post->published_at)
+            ->orderBy('published_at', 'asc')
+            ->limit(1)
+            ->first();
+
+        return view('post.view', compact('post', 'prev', 'next'));
     }
 
     /**

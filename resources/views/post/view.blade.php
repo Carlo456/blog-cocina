@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout :meta-title="$post->meta_title ?: $post->title" :meta-description="$post->meta_description">
         <!-- Post Section -->
         <section class="w-full md:w-2/3 flex flex-col items-center px-3">
 
@@ -8,11 +8,13 @@
                     <img src="{{ $post->getThumbnail() }}">
                 </a>
                 <div class="bg-white flex flex-col justify-start p-6">
-                    @foreach ($post->categories as $category)
-                        <h2 class="text-blue-700 text-sm font-bold uppercase pb-4">
-                            {{$category->title}}
-                        </h2>    
-                    @endforeach
+                    <div class="flex gap-4">
+                        @foreach ($post->categories as $category)
+                            <a class="text-blue-700 text-sm font-bold uppercase pb-4" href="{{ route('by-category', $category)}}">
+                                {{$category->title}}
+                            </a>    
+                        @endforeach
+                    </div>
                     <h1 class="text-3xl font-bold pb-4">
                         {{ $post->title }}
                     </h1>

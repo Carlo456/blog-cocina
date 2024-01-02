@@ -46,6 +46,8 @@ class PostResource extends Resource
                 Forms\Components\RichEditor::make('body')
                     ->required()
                     ->columnSpanFull(),
+                Forms\Components\TextInput::make('meta_title'),
+                Forms\Components\TextInput::make('meta_description'),
                 Forms\Components\FileUpload::make('thumbnail')
                     ->columnSpanFull(),
                 Forms\Components\Toggle::make('active')

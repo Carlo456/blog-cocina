@@ -1,4 +1,4 @@
-<x-app-layout meta-description="Blog de cocina para muestra">
+<x-app-layout :meta-title="'Categoria: '.$category->title" meta-description="Blog de cocina por categoria">
 <!-- Posts Section -->
     <section class="w-full md:w-2/3 flex flex-col items-center px-3">
         @foreach ($posts as $post)

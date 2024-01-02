@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout meta-title="Blog de cocina - About us page" meta-description="Conoce nuestros servicios de cocina...">
         <!-- Post Section -->
         <section class="w-full md:w-full flex flex-col items-center px-3">
 
